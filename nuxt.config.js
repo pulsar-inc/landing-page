@@ -69,8 +69,8 @@ export default {
   */
   pwa: {
     manifest: {
-      name: 'Boilerplate',
-      short_name: 'Boilerplate',
+      name: 'Pulsar',
+      short_name: 'Pulsar',
       display: 'standalone',
       theme_color: '#17171E',
       background_color: '#17171E'

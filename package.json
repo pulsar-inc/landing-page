@@ -1,7 +1,7 @@
 {
-  "name": "nuxt-boilerplate",
+  "name": "pulsar-landing-page",
   "version": "1.0.0",
-  "description": "Nuxt PWA GraphQL boilerplate",
+  "description": "Pulsar landing page",
   "author": "Pulsar",
   "private": true,
   "scripts": {
