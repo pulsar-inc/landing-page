@@ -1,6 +1,6 @@
 const title = 'Coming soon.'
 const description = 'Pulsar official website.'
-const image = 'https://pulsar.dev/og-soon.png'
+const image = 'https://i.ibb.co/z68VQz4/og-soon.png'
 
 export default {
   mode: 'universal',
