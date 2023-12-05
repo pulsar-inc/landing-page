@@ -1,5 +1,7 @@
 <script setup lang="ts">
 const bubble: Ref<HTMLElement | undefined> = ref();
+const initSize = ref(0);
+const halfSize = computed(() => initSize.value / 2);
 
 function updatePos(event: MouseEvent | TouchEvent) {
   if (!bubble.value) return;
@@ -22,11 +24,11 @@ function updatePos(event: MouseEvent | TouchEvent) {
   if ("target" in targettedNode.attributes) {
     const rect = targettedNode.getBoundingClientRect();
 
-    const left = rect.x + 80;
-    const top = rect.y + 80;
+    const left = rect.x + halfSize.value;
+    const top = rect.y + halfSize.value;
 
-    cursorX = left + (left - (cursorX - 80)) * 0.1;
-    cursorY = top + (top - (cursorY - 80)) * 0.1;
+    cursorX = left + (left - (cursorX - halfSize.value)) * 0.1;
+    cursorY = top + (top - (cursorY - halfSize.value)) * 0.1;
 
     height = `${rect.height}px`;
     width = `${rect.width}px`;
@@ -39,8 +41,14 @@ function updatePos(event: MouseEvent | TouchEvent) {
   bubble.value.style.height = height;
   bubble.value.style.setProperty("--tw-scale-x", scale);
   bubble.value.style.setProperty("--tw-scale-y", scale);
-  bubble.value.style.setProperty("--tw-translate-x", `${cursorX - 80}px`);
-  bubble.value.style.setProperty("--tw-translate-y", `${cursorY - 80}px`);
+  bubble.value.style.setProperty(
+    "--tw-translate-x",
+    `${cursorX - halfSize.value}px`,
+  );
+  bubble.value.style.setProperty(
+    "--tw-translate-y",
+    `${cursorY - halfSize.value}px`,
+  );
 }
 
 function hideBubble() {
@@ -51,6 +59,11 @@ function hideBubble() {
 }
 
 onMounted(() => {
+  const svg = document.querySelector("svg");
+  if (svg) {
+    initSize.value = svg.getBoundingClientRect().width;
+  }
+
   if (window.matchMedia("(any-pointer: coarse)").matches) {
     addEventListener("touchmove", updatePos, { passive: true });
     addEventListener("touchend", hideBubble, { passive: true });
@@ -67,15 +80,15 @@ onMounted(() => {
         class="relative flex flex-col gap-6 items-center justify-center font-black font-muli min-h-[calc(100dvh)]"
       >
         <h1 class="sr-only">Pulsar</h1>
-        <Comet target class="h-40 w-40" />
-        <p target class="text-8xl">
+        <Comet target class="h-32 w-32 sm:h-40 sm:w-40" />
+        <p target class="text-6xl sm:text-8xl">
           <span class="sr-only">Coming</span>
           soon.
         </p>
       </div>
       <div
         ref="bubble"
-        class="absolute pointer-events-none top-0 left-0 opacity-0 scale-0 rounded-full h-40 w-40 backdrop-invert transition-all ease-linear duration-75"
+        class="absolute pointer-events-none top-0 left-0 opacity-0 scale-0 rounded-full h-32 w-32 sm:h-40 sm:w-40 backdrop-invert transition-all ease-linear duration-75"
       />
     </Body>
   </Html>
