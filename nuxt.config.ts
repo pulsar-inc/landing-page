@@ -1,40 +1,44 @@
+const title = "Coming soon.";
+const description = "Pulsar official website.";
+const image = "https://i.ibb.co/z68VQz4/og-soon.png";
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  extends: ["@plsr/nuxt-layer-base"],
+  modules: ["@nuxtjs/google-fonts"],
   devtools: { enabled: true },
-  // head: {
-  //   title,
-  //   meta: [
-  //     { charset: 'utf-8' },
-  //     { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-  //     { hid: 'og:title', property: 'og:title', content: title },
-  //     { hid: 'description', name: 'description', content: description },
-  //     { hid: 'og:desc', property: 'og:description', content: description },
-  //     { hid: 'og:image', property: 'og:image', content: image },
-  //     { name: 'theme-color', content: '#ffffff' }
-  //   ],
-  //   link: [
-  //     { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-  //     { name: 'msapplication-TileColor', content: '#2b5797' },
-  //     { rel: 'shortcut icon', type: 'image/png', href: '/logo.png' },
-  //     { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Muli:wght@300;400;600;700&display=swap' },
-  //     { rel: 'mask-icon', href: '/safari-pinned-tab.svg', color: '#5bbad5' },
-  //     { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' }
-  //   ]
-  // },
-    /*
-  ** PWA config
-  */
-  // pwa: {
-  //   manifest: {
-  //     name: 'Pulsar',
-  //     short_name: 'Pulsar',
-  //     display: 'standalone',
-  //     theme_color: '#17171E',
-  //     background_color: '#17171E'
-  //   },
-  //   icon: {
-  //     iconSrc: '~/static/logo.png',
-  //     iconFileName: 'logo.png'
-  //   }
-  // },
-})
+  // https://google-fonts.nuxtjs.org/getting-started/options
+  googleFonts: {
+    display: "swap",
+    text: "soon.",
+    families: {
+      Muli: [900],
+    },
+  },
+  app: {
+    head: {
+      title,
+      charset: "utf-8",
+      htmlAttrs: { lang: "en-US" },
+      viewport: "width=device-width, initial-scale=1",
+      meta: [
+        { property: "og:title", content: title },
+        { name: "description", content: description },
+        { property: "og:description", content: description },
+        { property: "og:image", content: image },
+        { name: "theme-color", content: "#0d0d0d" },
+        { name: "msapplication-TileColor", content: "#0d0d0d" },
+      ],
+      link: [
+        { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+        { rel: "shortcut icon", type: "image/png", href: "/logo.png" },
+        { rel: "mask-icon", href: "/logo.svg", color: "#0d0d0d" },
+        {
+          rel: "apple-touch-icon",
+          sizes: "180x180",
+          href: "/apple-touch-icon.png",
+        },
+      ],
+    },
+  },
+});
