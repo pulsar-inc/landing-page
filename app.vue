@@ -16,6 +16,7 @@ function updatePos(event: MouseEvent | TouchEvent) {
   let cursorY =
     (event as MouseEvent).clientY ??
     (event as TouchEvent).touches?.[0]?.clientY;
+
   let width = "10rem";
   let height = "10rem";
   let scale = "1";
@@ -68,8 +69,10 @@ onMounted(() => {
     addEventListener("touchmove", updatePos, { passive: true });
     addEventListener("touchend", hideBubble, { passive: true });
   }
-  addEventListener("mousemove", updatePos, { passive: true });
-  addEventListener("mouseout", hideBubble, { passive: true });
+  if (window.matchMedia("(any-pointer: fine)").matches) {
+    addEventListener("mousemove", updatePos, { passive: true });
+    addEventListener("mouseout", hideBubble, { passive: true });
+  }
 });
 </script>
 
