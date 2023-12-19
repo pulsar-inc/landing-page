@@ -84,7 +84,7 @@ onMounted(() => {
       >
         <h1 class="sr-only">Pulsar</h1>
         <Comet target class="h-32 w-32 sm:h-40 sm:w-40" />
-        <p target class="text-6xl sm:text-8xl">
+        <p class="text-6xl sm:text-8xl">
           <span class="sr-only">Coming</span>
           soon.
         </p>
